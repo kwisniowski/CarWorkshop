@@ -6,22 +6,40 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+@Entity
+@Table(name="RENTS")
 @Component
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Rent {
-    private RentalCar car;
+    @Id
+    @Column(name="ID")
+    @GeneratedValue
+    @NotNull
+    private long id;
+    @Column(name="RENT_DATE")
     private LocalDate rentDate;
+    @Column(name="RETURN_DATE")
     private LocalDate returnDate;
+    @Column(name="RENT_COUNTER")
     private int distanceCounterAtRent;
+    @Column(name="RETURN_COUNTER")
     private int distanceCounterAtReturn;
+    @Column(name="KM_PRICE")
     private double kmPrice;
+    @Column(name="DAY_PRICE")
     private double dayPrice;
+    @Column(name="RENT_COST")
     private double rentCost;
+    @ManyToOne
+    @JoinColumn(name="CAR_ID")
+    private RentalCar car;
 
     public Rent(RentalCar car, int distanceCounterAtRent, double kmPrice, double dayPrice) {
         this.car = car;

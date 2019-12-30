@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Component
 @Getter
@@ -27,6 +28,7 @@ public class Car {
     @Column(name="ID")
     private long id;
     @Column(name="BRAND")
+    @Enumerated(EnumType.STRING)
     private CarBrand brand;
     @Column(name="MODEL")
     private String model;
