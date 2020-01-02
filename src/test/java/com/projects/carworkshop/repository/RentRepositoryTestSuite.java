@@ -3,13 +3,16 @@ package com.projects.carworkshop.repository;
 import com.projects.carworkshop.domain.Car;
 import com.projects.carworkshop.domain.Rent;
 import com.projects.carworkshop.domain.RentalCar;
+import org.h2.tools.Server;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 @SpringBootTest
@@ -20,6 +23,13 @@ public class RentRepositoryTestSuite {
     RentRepository rentRepository;
     @Autowired
     RentalCarRepository rentalCarRepository;
+
+    @BeforeClass
+    public static void initTest() throws SQLException {
+        Server webServer = Server.createWebServer("-web",
+                "-webAllowOthers", "-webPort", "8087");
+        webServer.start();
+    }
 
     @Test
     public void testRentRepositorySave() {
@@ -41,10 +51,5 @@ public class RentRepositoryTestSuite {
         long expectedId = testRent1.getId();
         Optional<Rent> expectedRent = rentRepository.findById(expectedId);
         Assert.assertNotNull(expectedRent.isPresent());
-
-        //Clean-Up
-
-        rentRepository.deleteById(testRent1.getId());
-
     }
 }

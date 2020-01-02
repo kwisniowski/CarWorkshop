@@ -1,9 +1,12 @@
 package com.projects.carworkshop.domain;
 
+import org.h2.tools.Server;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -12,6 +15,13 @@ import java.util.Map;
 
 @SpringBootTest
 public class WorkshopDomainTestSuite {
+
+    @BeforeClass
+    public static void initTest() throws SQLException {
+        Server webServer = Server.createWebServer("-web",
+                "-webAllowOthers", "-webPort", "8082");
+        webServer.start();
+    }
 
     @Test
     public void testCalculateRentCost() {
@@ -36,22 +46,4 @@ public class WorkshopDomainTestSuite {
         Assert.assertEquals(320,expectedCost,0);
     }
 
-    @Test
-    public void testCalculateRepairCost() {
-        //Given
-        SparePart spare1 = new SparePart(Car.CarBrand.PEUGEOT,"C3","Bosh",200);
-        SparePart spare2 = new SparePart(Car.CarBrand.CITROEN,"We12-BC", "RW", 50);
-        Map<SparePart,Integer> spares = new HashMap<>();
-        spares.put(spare1,2);
-        spares.put(spare2,2);
-        Repair testRepair = new Repair(null,LocalDate.now().minus(3,ChronoUnit.DAYS));
-        testRepair.setSpareParts(spares);
-
-        //When
-        testRepair.endRepair();
-        double totalRepairCost = testRepair.getTotalCost();
-
-        //Then
-        Assert.assertEquals(500, totalRepairCost, 0 );
-    }
 }

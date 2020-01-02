@@ -22,21 +22,23 @@ public class SparePart {
     @NotNull
     @Column(name="SPARE_PART_ID")
     private long id;
+
     @Column(name="CAR_BRAND")
+    @Enumerated(EnumType.STRING)
     @NotNull
     private Car.CarBrand carBrand;
+
     @Column(name="MODEL")
     @NotNull
     private String model;
+
     @Column(name="MANUFACTURER")
     @NotNull
     private String manufacturer;
+
     @Column(name="PRICE")
     @NotNull
     private double price;
-
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "spareParts")
-    private List<Repair> repairs;
 
     public SparePart(@NotNull Car.CarBrand carBrand, @NotNull String model, @NotNull String manufacturer, @NotNull double price) {
         this.carBrand = carBrand;

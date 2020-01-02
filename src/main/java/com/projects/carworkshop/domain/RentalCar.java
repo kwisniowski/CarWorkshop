@@ -25,18 +25,26 @@ public class RentalCar {
     @NotNull
     @Column(name="ID")
     private long id;
+
     @Column(name="BRAND")
+    @Enumerated(EnumType.STRING)
     private Car.CarBrand brand;
+
     @Column(name="MODEL")
     private String model;
+
     @Column(name="MANUFACTURE_YEAR")
     private String manufactureYear;
+
     @Column(name="VIN_NUMBER")
     private String vinNumber;
+
     @Column(name="ENGINE_SIZE")
     private double engineSize;
+
     @Column(name="PLATE_NUMBER")
     private String plateNumber;
+
     @Column(name="BODY_TYPE")
     private Car.CarBodyType bodyType;
     private boolean rented;

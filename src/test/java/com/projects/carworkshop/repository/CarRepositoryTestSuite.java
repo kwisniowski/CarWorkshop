@@ -2,12 +2,16 @@ package com.projects.carworkshop.repository;
 
 import com.projects.carworkshop.domain.Car;
 import com.projects.carworkshop.domain.Customer;
+import org.h2.tools.Server;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.sql.SQLException;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -16,6 +20,13 @@ public class CarRepositoryTestSuite {
     CustomerRepository customerRepository;
     @Autowired
     CarRepository carRepository;
+    @BeforeClass
+    public static void initTest() throws SQLException {
+        Server webServer = Server.createWebServer("-web",
+                "-webAllowOthers", "-webPort", "8083");
+        webServer.start();
+    }
+
     @Test
     public void testCarCustomerOneToManyRelation() {
         //Given
@@ -43,8 +54,5 @@ public class CarRepositoryTestSuite {
 
         long testId = testCustomer.getId();
         Assert.assertNotEquals(0,testId);
-
-        //Clean-Up
-        customerRepository.deleteById(testCustomer.getId());
     }
 }

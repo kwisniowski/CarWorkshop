@@ -13,22 +13,25 @@ repositories {
 }
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web'
-
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
     //Test
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testCompile group: 'com.h2database', name: 'h2'
+    runtimeOnly('com.h2database:h2')
     
     //Lombok
     compileOnly 'org.projectlombok:lombok:1.18.10'
     annotationProcessor 'org.projectlombok:lombok:1.18.10'
     
     //Hibernate
-    compile 'org.springframework.boot:spring-boot-starter-validation'
-    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-    compile 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    //compile 'org.springframework.boot:spring-boot-starter-jdbc'
 
     //SQL Engine
-    compile 'mysql:mysql-connector-java'
+    implementation 'mysql:mysql-connector-java'
+
+
 }
 
