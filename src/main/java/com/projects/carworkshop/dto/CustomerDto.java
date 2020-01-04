@@ -5,7 +5,6 @@ import com.projects.carworkshop.domain.Invoice;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 
