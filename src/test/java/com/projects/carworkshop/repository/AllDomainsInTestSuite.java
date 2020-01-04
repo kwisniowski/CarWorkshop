@@ -79,7 +79,7 @@ public class AllDomainsInTestSuite {
 
         //Then
         Assert.assertEquals(400,expectedValue,0);
-        while(true);
+        //while(true);
     }
 
 

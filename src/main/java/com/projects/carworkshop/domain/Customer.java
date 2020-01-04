@@ -1,5 +1,6 @@
 package com.projects.carworkshop.domain;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -52,9 +53,11 @@ public class Customer {
     private String phoneNumber;
 
     @Column(name="VIP")
+    @NotNull
     private boolean vipCustomer;
 
     @Column(name="COMPANY_CUSTOMER")
+    @NotNull
     private boolean companyCustomer;
 
     @OneToMany(
