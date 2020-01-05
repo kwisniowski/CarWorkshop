@@ -41,7 +41,7 @@ public class Invoice {
     private boolean paid;
 
     @Column(name="COST")
-    private long totalCost;
+    private Double totalCost;
 
     @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Repair repair;
@@ -59,7 +59,7 @@ public class Invoice {
         this.paymentPeriod = paymentPeriod;
         this.paymentLimitDate = LocalDate.now().plus(paymentPeriod, ChronoUnit.DAYS);
         this.paid = false;
-        this.totalCost = 0;
+        this.totalCost = 0.0;
         this.items = new ArrayList<InvoiceItem>();
     }
 }

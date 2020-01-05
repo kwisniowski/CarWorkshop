@@ -4,6 +4,7 @@ import com.projects.carworkshop.domain.Car;
 import com.projects.carworkshop.dto.CarDto;
 import com.projects.carworkshop.dto.CustomerDto;
 import com.projects.carworkshop.exception.NotFoundException;
+import com.projects.carworkshop.fasade.CarFasade;
 import com.projects.carworkshop.mapper.CarMapper;
 import com.projects.carworkshop.mapper.CustomerMapper;
 import com.projects.carworkshop.repository.CarRepository;
@@ -23,36 +24,30 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class CarController {
 
     @Autowired
-    CarRepository repository;
-
-    @Autowired
-    CarMapper mapper;
-
-    @Autowired
-    CarService service;
+    CarFasade fasade;
 
     @RequestMapping(method = RequestMethod.GET, value="/cars")
     public List<CarDto> getCars() {
-        return mapper.mapoCarDtoList(service.getCars());
+        return fasade.fetchAllCars();
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/cars/{carId}")
     public CarDto getCar(@PathVariable Long carId) throws NotFoundException {
-        return mapper.mapToCarDto(service.getCar(carId).orElseThrow(NotFoundException::new));
+        return fasade.fetchCar(carId).orElseThrow(NotFoundException::new);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/cars/{carId}")
-    public void deleteCuar(@PathVariable Long carId){
-        service.deleteCar(carId);
+    public void deleteCar(@PathVariable Long carId){
+        fasade.deleteCar(carId);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/cars")
     public CarDto updateCar(@RequestBody CarDto carDto) {
-        return mapper.mapToCarDto(service.save(mapper.mapToCar(carDto)));
+        return fasade.updateCar(carDto);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/cars", consumes = APPLICATION_JSON_VALUE)
     public void createCar(@RequestBody CarDto carDto) {
-        service.save(mapper.mapToCar(carDto));
+        fasade.createCar(carDto);
     }
 }

@@ -25,7 +25,7 @@ public class CustomerMapper {
                 customer.getInvoices());
     }
 
-    public List<CustomerDto> mapToCustomerDtoList (List<Customer> customerList) {
+    public List<CustomerDto> mapToCustomerDtoList (final List<Customer> customerList) {
         return customerList.stream()
                 .map(c -> new CustomerDto(c.getId(),c.getFirstname(), c.getLastname(), c.getCompany(),
                         c.getNipNumber(), c.getAccountNumber(), c.getRegonNumber(), c.getEmailAdress(),
