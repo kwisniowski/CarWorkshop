@@ -1,10 +1,12 @@
 package com.projects.carworkshop.controller;
 
+import com.google.gson.Gson;
 import com.projects.carworkshop.domain.Customer;
 import com.projects.carworkshop.dto.CustomerDto;
 import com.projects.carworkshop.fasade.CustomerFasade;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -17,8 +19,8 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -70,6 +72,69 @@ public class CustomerControllerTestSuite {
                 .andExpect(jsonPath("$",hasSize(2)))
                 .andExpect(jsonPath("$[0].lastname",is("Nowak")))
                 .andExpect(jsonPath("$[1].phoneNumber",is("199")));
-
     }
+
+    @Test
+    public void shouldUpdateCustomer() throws Exception {
+        //Given
+        CustomerDto customer1 = new CustomerDto(1L,
+                "Jan","Nowak",
+                null,null,
+                "122212141212",null,
+                "kwisniowski@cxsa.pl","607241199",
+                false,false,null,null);
+        CustomerDto customerUpdated = new CustomerDto(1L,
+                "Janek","Nowak",
+                null,null,
+                "122","32122112",
+                "kwisniowski@cxsa.pl","607241199",
+                false,false,null,null);
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(customer1);
+        when(customerFasade.updateCustomer(ArgumentMatchers.any(CustomerDto.class))).thenReturn(customerUpdated);
+
+        //When&Then
+        mockMvc.perform(put("/v1/carworkshop/api/customers")
+                .contentType(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8")
+                .content(jsonContent))
+                .andExpect(jsonPath("$.firstname",is("Janek")))
+                .andExpect(jsonPath("$.lastname",is("Nowak")));
+    }
+
+    @Test
+    public void shouldCreateCustomer() throws Exception {
+        //Given
+        CustomerDto customer1 = new CustomerDto(1L,
+                "Jan","Nowak",
+                null,null,
+                "122212141212",null,
+                "kwisniowski@cxsa.pl","607241199",
+                false,false,null,null);
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(customer1);
+
+        //When
+        mockMvc.perform(post("/v1/carworkshop/api/customers")
+                .characterEncoding("Utf-8")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonContent))
+                .andExpect(status().isOk());
+
+        //Then
+        verify(customerFasade,times(1)).createCustomer(any(CustomerDto.class));
+    }
+
+    @Test
+    public void shouldDeleteCustomer() throws Exception {
+        //Given
+        //When
+        mockMvc.perform(delete("/v1/carworkshop/api/customers/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8"))
+                .andExpect(status().isOk());
+        //Then
+        verify(customerFasade,times(1)).deleteCustomer(any(Long.class));
+    }
+
 }

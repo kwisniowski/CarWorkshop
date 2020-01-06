@@ -32,6 +32,9 @@ dependencies {
     //SQL Engine
     implementation 'mysql:mysql-connector-java'
 
+    //Gson
+    compile('com.google.code.gson:gson:2.8.2')
+
 
 }
 
