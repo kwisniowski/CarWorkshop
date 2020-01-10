@@ -21,6 +21,6 @@ public class CarDto {
     private double engineSize;
     private String plateNumber;
     private Car.CarBodyType bodyType;
-    private Customer owner;
-    private List<Repair> repairs;
+    private long customerId;
+    private List<RepairDto> repairs;
 }

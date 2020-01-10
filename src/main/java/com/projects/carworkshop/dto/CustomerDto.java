@@ -23,7 +23,7 @@ public class CustomerDto {
         private String phoneNumber;
         private boolean vipCustomer;
         private boolean companyCustomer;
-        private List<Car> cars;
-        private List<Invoice> invoices;
+        private List<CarDto> cars;
+        private List<InvoiceDto> invoices;
 
 }

@@ -50,7 +50,7 @@ public class Invoice {
             targetEntity = InvoiceItem.class,
             mappedBy = "invoice",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
     )
     private List<InvoiceItem> items;
 

@@ -46,7 +46,7 @@ public class CarControllerTest {
                 false, false);
         CarDto testCar1 = new CarDto(1L,
                 Car.CarBrand.CITROEN, "C3", "2018", "12121TETTTEWBBW",
-                1.9, "kr3043l", Car.CarBodyType.CABRIO, testCustomer, new ArrayList<>());
+                1.9, "kr3043l", Car.CarBodyType.CABRIO, 1, new ArrayList<>());
         List<CarDto> carList = new ArrayList<>();
         carList.add(testCar1);
         when(carFasade.fetchAllCars()).thenReturn(carList);
@@ -94,7 +94,7 @@ public class CarControllerTest {
                 false, false);
         CarDto testCar1 = new CarDto(1L,
                 Car.CarBrand.CITROEN, "C3", "2018", "12121TETTTEWBBW",
-                1.9, "kr3043l", Car.CarBodyType.CABRIO, testCustomer, new ArrayList<>());
+                1.9, "kr3043l", Car.CarBodyType.CABRIO, 1, new ArrayList<>());
         Gson gson = new Gson();
         String jsonContent = gson.toJson(testCar1);
 
@@ -118,10 +118,10 @@ public class CarControllerTest {
                 false, false);
         CarDto testCar1 = new CarDto(1L,
                 Car.CarBrand.CITROEN, "C3", "2018", "12121TETTTEWBBW",
-                1.9, "kr3043l", Car.CarBodyType.CABRIO, testCustomer, new ArrayList<>());
+                1.9, "kr3043l", Car.CarBodyType.CABRIO,1, new ArrayList<>());
         CarDto testCarUpdated = new CarDto(1L,
                 Car.CarBrand.CITROEN, "C15", "2015", "12121TETTTEWBBW",
-                1.0, "kr3043l", Car.CarBodyType.CABRIO, testCustomer, new ArrayList<>());
+                1.0, "kr3043l", Car.CarBodyType.CABRIO, 1, new ArrayList<>());
         Gson gson = new Gson();
         String jsonContent = gson.toJson(testCarUpdated);
         when(carFasade.updateCar(any(CarDto.class))).thenReturn(testCarUpdated);
@@ -136,5 +136,3 @@ public class CarControllerTest {
                 .andExpect(jsonPath("$.owner.firstname",is("Jan")));
     }
 }
-
-
