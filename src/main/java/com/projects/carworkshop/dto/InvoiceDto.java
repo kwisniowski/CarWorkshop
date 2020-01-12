@@ -19,5 +19,5 @@ public class InvoiceDto {
     private boolean paid;
     private Double totalCost;
     private long repairId;
-    private List<InvoiceItemDto> items;
+    private List<InvoiceItemDto> invoiceItemDtos;
 }

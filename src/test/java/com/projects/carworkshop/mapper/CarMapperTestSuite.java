@@ -73,7 +73,7 @@ public class CarMapperTestSuite {
                 false, false, new ArrayList<>(), new ArrayList<>());
         customerService.save(testCustomer);
         CarDto testCarDto = new CarDto(1L, Car.CarBrand.CITROEN, "C3", "2018", "12121TETTTEWBBW",
-                1.9, "kr3043l", Car.CarBodyType.CABRIO, 1, null);
+                1.9, "kr3043l", Car.CarBodyType.CABRIO, 1,new ArrayList<>());
         Car expectedCar = carMapper.mapToCar(testCarDto);
 
         //When

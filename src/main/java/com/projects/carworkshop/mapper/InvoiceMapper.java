@@ -17,11 +17,13 @@ public class InvoiceMapper {
     CustomerRepository customerRepository;
     @Autowired
     RepairRepository repairRepository;
+    @Autowired
+    InvoiceItemMapper invoiceItemMapper;
 
     public InvoiceDto mapToInvoiceDto(final Invoice invoice) {
         return new InvoiceDto(
                 invoice.getId(),invoice.getCustomer().getId(), invoice.getPaymentPeriod(), invoice.getPaymentLimitDate(),
-                invoice.isPaid(),invoice.getTotalCost(),invoice.getRepair().getId(),invoice.getItems());
+                invoice.isPaid(),invoice.getTotalCost(),invoice.getRepair().getId(), invoiceItemMapper.mapToInvoiceItemDtoList(invoice.getItems()));
     }
 
     public Invoice mapToInvoice(final InvoiceDto invoiceDto) {
@@ -29,20 +31,22 @@ public class InvoiceMapper {
                 invoiceDto.getId(),customerRepository.findById(invoiceDto.getCustomerId()).orElse(null),
                 invoiceDto.getPaymentPeriod(), invoiceDto.getPaymentLimitDate(),
                 invoiceDto.isPaid(),invoiceDto.getTotalCost(),repairRepository.findById(invoiceDto.getRepairId()).orElse(null),
-                invoiceDto.getItems());
+                invoiceItemMapper.mapToInvoiceItemList(invoiceDto.getInvoiceItemDtos()));
     }
 
     public List<InvoiceDto> mapToInvoiceDtoList(final List<Invoice> invoices) {
         return invoices.stream()
                 .map(i-> new InvoiceDto(i.getId(),i.getCustomer().getId(), i.getPaymentPeriod(), i.getPaymentLimitDate(),
-                        i.isPaid(),i.getTotalCost(),i.getRepair().getId(),i.getItems()))
+                        i.isPaid(),i.getTotalCost(),i.getRepair().getId(),invoiceItemMapper.mapToInvoiceItemDtoList(i.getItems())))
                 .collect(Collectors.toList());
     }
 
     public List<Invoice> mapToInvoiceList(final List<InvoiceDto> invoiceDtoList) {
         return invoiceDtoList.stream()
-                .map(i-> new InvoiceDto(i.getId(),customerRepository.findById(i.getCustomerId()).orElse(null), i.getPaymentPeriod(), i.getPaymentLimitDate(),
-                        i.isPaid(),i.getTotalCost(),repairRepository.findById(i.getRepairId()).orElse(null),i.getItems()))
+                .map(i-> new Invoice(i.getId(),customerRepository.findById(i.getCustomerId()).orElse(null),
+                        i.getPaymentPeriod(), i.getPaymentLimitDate(), i.isPaid(),i.getTotalCost(),
+                        repairRepository.findById(i.getRepairId()).orElse(null),
+                        invoiceItemMapper.mapToInvoiceItemList(i.getInvoiceItemDtos())))
                 .collect(Collectors.toList());
     }
 }

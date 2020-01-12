@@ -78,7 +78,7 @@ public class InvoiceControllerTest {
     }
 
     @Test
-    public void shouldFetchPaidInvoices() throws Exception {
+    public void shouldFetchUnpaidInvoices() throws Exception {
         Customer testCustomer = new Customer(
                 "Jan", "Nowak",
                 null, null,
@@ -91,22 +91,20 @@ public class InvoiceControllerTest {
         InvoiceItem item1 = new InvoiceItem(testSpare1, 3);
         InvoiceItem item2 = new InvoiceItem(testSpare2, 10);
         InvoiceDto invoice1 = new InvoiceDto(1L,1,24,null,false,null,1,new ArrayList<>());
-        InvoiceDto invoice2 = new InvoiceDto(1L,1,24,null,true,null,1,new ArrayList<>());
         InvoiceDto invoice3 = new InvoiceDto(1L, 1,24,null,false,null,1,new ArrayList<>());
 
         List<InvoiceDto> invoiceDtoList = new ArrayList<>();
         invoiceDtoList.add(invoice1);
-        invoiceDtoList.add(invoice2);
         invoiceDtoList.add(invoice3);
 
         when(invoiceFasade.fetchUnpaidInvoices()).thenReturn(invoiceDtoList);
 
-        mockMvc.perform(get("/v1/carworkshop/api/invoices/paid")
+        mockMvc.perform(get("/v1/carworkshop/api/invoices/unpaid")
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$",hasSize(1)))
-                .andExpect((jsonPath("$[1].paid",is(false))));
+                .andExpect(jsonPath("$",hasSize(2)))
+                .andExpect((jsonPath("$[1].repairId",is(1))));
 
     }
 

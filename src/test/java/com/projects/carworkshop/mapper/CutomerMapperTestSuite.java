@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.validation.constraints.AssertTrue;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -26,7 +25,7 @@ public class CutomerMapperTestSuite {
     @BeforeClass
     public static void initTest() throws SQLException {
         Server webServer = Server.createWebServer("-web",
-                "-webAllowOthers", "-webPort", "8095");
+                "-webAllowOthers", "-webPort", "8102");
         webServer.start();
     }
 

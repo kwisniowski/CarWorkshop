@@ -1,7 +1,6 @@
 package com.projects.carworkshop.dto;
 
-import com.projects.carworkshop.domain.Invoice;
-import com.projects.carworkshop.domain.SparePart;
+import com.projects.carworkshop.domain.Car;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -10,10 +9,10 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @AllArgsConstructor
-public class InvoiceItemDto {
-
+public class SparePartDto {
     private long id;
-    private long sparePartId;
-    private int quantity;
-    private long invoiceId;
+    private Car.CarBrand carBrand;
+    private String model;
+    private String manufacturer;
+    private double price;
 }

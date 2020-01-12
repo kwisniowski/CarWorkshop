@@ -19,7 +19,7 @@ public class InvoiceItem {
     @GeneratedValue
     @NotNull
     @Column(name = "ID")
-    private int id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "SPARE_PART_ID")

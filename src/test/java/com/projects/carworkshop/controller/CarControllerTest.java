@@ -133,6 +133,6 @@ public class CarControllerTest {
                 .content(jsonContent))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.model",is("C15")))
-                .andExpect(jsonPath("$.owner.firstname",is("Jan")));
+                .andExpect(jsonPath("$.customerId",is(1)));
     }
 }

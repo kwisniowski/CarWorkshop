@@ -40,7 +40,7 @@ public class RepairMapperTestSuite {
     @BeforeClass
     public static void initTest() throws SQLException {
         Server webServer = Server.createWebServer("-web",
-                "-webAllowOthers", "-webPort", "8095");
+                "-webAllowOthers", "-webPort", "8100");
         webServer.start();
     }
 

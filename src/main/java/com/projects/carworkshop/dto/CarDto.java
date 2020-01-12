@@ -1,8 +1,6 @@
 package com.projects.carworkshop.dto;
 
 import com.projects.carworkshop.domain.Car;
-import com.projects.carworkshop.domain.Customer;
-import com.projects.carworkshop.domain.Repair;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,5 +20,5 @@ public class CarDto {
     private String plateNumber;
     private Car.CarBodyType bodyType;
     private long customerId;
-    private List<RepairDto> repairs;
+    private List<RepairDto> repairDtos;
 }
