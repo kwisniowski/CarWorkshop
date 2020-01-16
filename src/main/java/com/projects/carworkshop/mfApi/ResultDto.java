@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Result {
+public class ResultDto {
 
     @JsonProperty
-    Subject subject;
+    SubjectDto subject;
 
     @JsonProperty
     String requestId;

@@ -1,8 +1,11 @@
 package com.projects.carworkshop.controller;
 
+import com.projects.carworkshop.config.MailConfig;
+import com.projects.carworkshop.domain.Mail;
 import com.projects.carworkshop.dto.RentRequestDto;
 import com.projects.carworkshop.exception.NotFoundException;
 import com.projects.carworkshop.fasade.RentRequestFasade;
+import com.projects.carworkshop.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -14,6 +17,11 @@ public class RentRequestController {
 
     @Autowired
     RentRequestFasade fasade;
+    @Autowired
+    MailService mailService;
+    @Autowired
+    MailConfig mailConfig;
+
 
     @RequestMapping(method = RequestMethod.GET, value = "/rentRequests")
     public List<RentRequestDto> getRentRequests() {
@@ -43,5 +51,6 @@ public class RentRequestController {
     @RequestMapping(method = RequestMethod.POST,value ="/rentRequests")
     public void createRequest(@RequestBody RentRequestDto rentRequestDto) {
         fasade.createRentRequest(rentRequestDto);
+        mailService.send(new Mail("wisniowski.kacper@gmail.com","New request","New request has been created"));
     }
 }

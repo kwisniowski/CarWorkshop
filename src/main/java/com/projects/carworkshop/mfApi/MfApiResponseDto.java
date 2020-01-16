@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MfApiResponse {
+public class MfApiResponseDto {
 
     @JsonProperty("result")
-    Result result;
+    ResultDto result;
 }

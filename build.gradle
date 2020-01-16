@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    compile('org.springframework.boot:spring-boot-starter-mail:1.5.7.RELEASE')
 
     //Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -34,7 +35,5 @@ dependencies {
 
     //Gson
     compile('com.google.code.gson:gson:2.8.2')
-
-
 }
 

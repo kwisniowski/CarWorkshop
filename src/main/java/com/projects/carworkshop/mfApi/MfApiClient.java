@@ -1,21 +1,43 @@
 package com.projects.carworkshop.mfApi;
 
+import com.projects.carworkshop.config.MfApiEndpointConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
-@Component
+import java.net.URI;
+import java.time.LocalDate;
+
+@Controller
 public class MfApiClient {
 
     @Autowired
     RestTemplate restTemplate;
 
-    @Value("${mf.api.endpoint")
-    private String mfApiEndpoint;
+    @Autowired
+    MfApiEndpointConfig endpointConfig;
 
-    public MfApiResponse getCustomerInfoFromMF() {
-        MfApiResponse response = restTemplate.getForObject("https://wl-api.mf.gov.pl/api/search/nip/6760115479?date=2019-12-27",MfApiResponse.class);
+    public MfApiResponseDto getCustomerInfoFromMFByNip(String requestNip) {
+
+        URI url = UriComponentsBuilder.fromHttpUrl(endpointConfig.getMfApiEndpoint()+endpointConfig.getGetByNipAddress()+requestNip)
+                .queryParam("date",LocalDate.now().toString())
+                .build().encode().toUri();
+
+        MfApiResponseDto response = restTemplate.getForObject(url, MfApiResponseDto.class);
+        if (response!=null) {
+            return response;
+        }
+        else return null;
+    }
+
+    public MfApiResponseDto getCustomerInfoFromMFByRegon(String requestRegon) {
+
+        URI url = UriComponentsBuilder.fromHttpUrl(endpointConfig.getMfApiEndpoint()+endpointConfig.getGetByRegonAddress()+requestRegon)
+                .queryParam("date",LocalDate.now().toString())
+                .build().encode().toUri();
+
+        MfApiResponseDto response = restTemplate.getForObject(url, MfApiResponseDto.class);
         if (response!=null) {
             return response;
         }

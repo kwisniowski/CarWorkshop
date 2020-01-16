@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Subject {
+public class SubjectDto {
 
     @JsonProperty
     String name;
@@ -25,7 +25,7 @@ public class Subject {
     @JsonProperty
     String krs;
     @JsonProperty
-    String workingAdress;
+    String workingAddress;
     @JsonProperty
     String[] accountNumbers;
 }
