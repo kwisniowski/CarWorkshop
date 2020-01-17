@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MailConfig {
 
-    @Value("wisniowski.kacper@gmail.com")
+    @Value("${spring.mail.username}")
     private String adminMailAddress;
 
     @Value("${spring.mail.password}")

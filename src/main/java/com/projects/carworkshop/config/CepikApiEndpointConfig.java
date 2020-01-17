@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Getter
 public class CepikApiEndpointConfig {
 
-        @Value("cepik.api.endpoint")
+        @Value("${cepik.api.endpoint}")
         private String cepikApiEndpoint;
 }
 

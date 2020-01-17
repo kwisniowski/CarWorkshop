@@ -17,13 +17,17 @@ public class MfApiController {
     @RequestMapping(method = RequestMethod.GET, value = "getCustomerInfoByNip/{requestNip}")
     public SubjectDto getCustomerInfoByNip(@PathVariable String requestNip) {
         MfApiResponseDto response = client.getCustomerInfoFromMFByNip(requestNip);
-        System.out.println(response.getResult().getSubject().getName());
         return response.getResult().getSubject();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getCustomerInfoByRegon/{requestRegon}")
-    public void getCustomerInfoByRegon(@PathVariable String requestRegon) {
+    public SubjectDto getCustomerInfoByRegon(@PathVariable String requestRegon) {
         MfApiResponseDto response = client.getCustomerInfoFromMFByRegon(requestRegon);
-        System.out.println(response.getResult().getSubject().getName());
+        return response.getResult().getSubject();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "checkIsCustomerActive/{requestNip}")
+    public boolean checkIfCustomerIsActive(@PathVariable String requestNip) {
+        return client.getCustomerActivityStatus(requestNip);
     }
 }

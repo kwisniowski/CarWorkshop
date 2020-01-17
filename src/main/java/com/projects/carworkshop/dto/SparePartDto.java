@@ -4,9 +4,6 @@ import com.projects.carworkshop.domain.Car;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
 @Getter
 @AllArgsConstructor
 public class SparePartDto {
