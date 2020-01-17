@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -49,6 +50,7 @@ public class Car {
     @Enumerated(EnumType.STRING)
     private CarBodyType bodyType;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name="OWNER_ID")
     private Customer owner;
@@ -70,5 +72,6 @@ public class Car {
         this.plateNumber = plateNumber;
         this.bodyType = bodyType;
         this.owner = owner;
+        this.repairs = new ArrayList<>();
     }
 }

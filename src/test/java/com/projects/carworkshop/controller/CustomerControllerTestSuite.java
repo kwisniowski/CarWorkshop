@@ -55,7 +55,7 @@ public class CustomerControllerTestSuite {
                 null,null,
                 "122212141212",null,
                 "kwisniowski@cxsa.pl","607241199",
-                false,false,null,null);
+                false,false,null, null);
         CustomerDto customer2 = new CustomerDto( 2L,
                 "Alfred","X",
                 null,null,
@@ -81,14 +81,13 @@ public class CustomerControllerTestSuite {
                 "Jan","Nowak",
                 null,null,
                 "122212141212",null,
-                "kwisniowski@cxsa.pl","607241199",
-                false,false,null,null);
+                "kwisniowski@cxsa.pl","607241199", false, false, null, null);
         CustomerDto customerUpdated = new CustomerDto(1L,
                 "Janek","Nowak",
                 null,null,
                 "122","32122112",
                 "kwisniowski@cxsa.pl","607241199",
-                false,false,null,null);
+                false,false,null, null);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(customer1);
         when(customerFasade.updateCustomer(ArgumentMatchers.any(CustomerDto.class))).thenReturn(customerUpdated);
@@ -110,7 +109,7 @@ public class CustomerControllerTestSuite {
                 null,null,
                 "122212141212",null,
                 "kwisniowski@cxsa.pl","607241199",
-                false,false,null,null);
+                false,false,null, null);
         Gson gson = new Gson();
         String jsonContent = gson.toJson(customer1);
 

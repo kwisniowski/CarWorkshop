@@ -1,7 +1,5 @@
 package com.projects.carworkshop.dto;
 
-import com.projects.carworkshop.domain.Car;
-import com.projects.carworkshop.domain.Invoice;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +21,7 @@ public class CustomerDto {
         private String phoneNumber;
         private boolean vipCustomer;
         private boolean companyCustomer;
-        private List<Car> cars;
-        private List<Invoice> invoices;
+        private List<CarDto> carDtos;
+        private List<InvoiceDto> invoiceDtos;
 
 }

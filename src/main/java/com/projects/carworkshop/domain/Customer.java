@@ -92,6 +92,5 @@ public class Customer {
         this.vipCustomer = vipCustomer;
         this.companyCustomer = companyCustomer;
         this.cars = new ArrayList<>();
-        this.invoices = new ArrayList<>();
     }
 }
