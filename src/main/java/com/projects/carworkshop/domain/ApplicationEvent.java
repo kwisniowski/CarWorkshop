@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -43,10 +44,10 @@ public class ApplicationEvent {
         this.time = time;
     }
 
-    public ApplicationEvent(EventType type, LocalDate date, LocalTime time, String info) {
+    public ApplicationEvent(@NotNull EventType type, @NotNull String info) {
         this.type = type;
-        this.date = date;
-        this.time = time;
+        this.date = LocalDate.now();
+        this.time = LocalTime.now();
         this.info = info;
     }
 }

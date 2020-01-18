@@ -30,10 +30,9 @@ public class CoreConfiguration {
     @Autowired
     MailService mailService;
 
-    @Scheduled(cron = "*/59 * * * * *")
+    @Scheduled(cron = "0 0 * * * *")
     public void sendScheduledEmail() {
         mailService.send(new Mail(mailConfig.getAdminMailAddress(), SCHEDULED_MAIL_SUBJECT, "" +
-                "Current app status: /n" +
                 "RentsRequests in database: "+rentRequestService.countRequests()));
     }
 }

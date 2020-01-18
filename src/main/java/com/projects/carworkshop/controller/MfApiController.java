@@ -9,6 +9,7 @@ package com.projects.carworkshop.controller;
 
 @RestController
 @RequestMapping("/v1/carworkshop/mfapi/")
+@CrossOrigin("*")
 public class MfApiController {
 
     @Autowired

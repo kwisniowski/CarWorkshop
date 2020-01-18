@@ -38,7 +38,7 @@ public class MfApiClient {
         if (response!=null) {
             return response;
         }
-        else return null;
+        else return new MfApiResponseDto();
     }
 
     public boolean getCustomerActivityStatus(String requestNip) throws HttpClientErrorException {

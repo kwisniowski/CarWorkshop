@@ -48,19 +48,26 @@ public class CarController {
     public void deleteCar(@PathVariable Long carId){
         CarDto tempCar = fasade.fetchCar(carId).orElse(null);
         if (tempCar!=null) {
-            applicationEventService.saveEvent(new ApplicationEvent(ApplicationEvent.EventType.DELETED, LocalDate.now(),
-                    LocalTime.now(), "Car ("+tempCar.getPlateNumber()+") was deleted from database"));
+            applicationEventService.saveEvent(new ApplicationEvent(ApplicationEvent.EventType.DELETED,
+                    "Car ("+tempCar.getPlateNumber()+") was deleted from database"));
         }
         fasade.deleteCar(carId);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/cars")
     public CarDto updateCar(@RequestBody CarDto carDto) {
-        return fasade.updateCar(carDto);
+        CarDto tempCarDto = fasade.updateCar(carDto);
+        if (tempCarDto!=null) {
+            applicationEventService.saveEvent(new ApplicationEvent(ApplicationEvent.EventType.UPDATED,
+                    "Car (" + tempCarDto.getId() + ") was updated"));
+        }
+        return tempCarDto;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/cars", consumes = APPLICATION_JSON_VALUE)
     public void createCar(@RequestBody CarDto carDto) {
         fasade.createCar(carDto);
+        applicationEventService.saveEvent(new ApplicationEvent(ApplicationEvent.EventType.CREATED,
+                "Car ("+carDto.getPlateNumber()+") was created"));
     }
 }

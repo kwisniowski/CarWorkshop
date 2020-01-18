@@ -41,8 +41,8 @@ public class CustomerController {
     public void deleteCustomer(@PathVariable Long customerId){
         CustomerDto tempCustomer = fasade.fetchCustomer(customerId).orElse(null);
         if (tempCustomer!=null) {
-            applicationEventService.saveEvent(new ApplicationEvent(ApplicationEvent.EventType.DELETED, LocalDate.now(),
-                    LocalTime.now(), "Customer ("+tempCustomer.getLastname()+", "+
+            applicationEventService.saveEvent(new ApplicationEvent(ApplicationEvent.EventType.DELETED,
+                    "Customer ("+tempCustomer.getLastname()+", "+
                     tempCustomer.getFirstname()+") was deleted from database"));
         }
         fasade.deleteCustomer(customerId);
@@ -50,11 +50,19 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.PUT, value ="/customers")
     public CustomerDto updateCustomer(@RequestBody CustomerDto customerDto) {
-        return fasade.updateCustomer(customerDto);
+        CustomerDto tempCustomer = fasade.updateCustomer(customerDto);
+        if (tempCustomer!=null) {
+            applicationEventService.saveEvent(new ApplicationEvent(ApplicationEvent.EventType.UPDATED,
+                    "Customer (" + tempCustomer.getId() + ") was updated"));
+        }
+        return tempCustomer;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/customers", consumes = APPLICATION_JSON_VALUE)
     public void createCustomer(@RequestBody CustomerDto customerDto) {
         fasade.createCustomer(customerDto);
+        applicationEventService.saveEvent(new ApplicationEvent(ApplicationEvent.EventType.CREATED,
+                "Customer ("+customerDto.getLastname()+", "+
+                        customerDto.getFirstname()+") was created"));
     }
 }

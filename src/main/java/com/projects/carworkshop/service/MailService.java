@@ -27,8 +27,6 @@ public class MailService {
             applicationEventService.saveEvent(
                     new ApplicationEvent(
                     ApplicationEvent.EventType.MAIL_SEND,
-                    LocalDate.now(),
-                    LocalTime.now(),
                     "Mail to:"+mail.getMailTo()+" ,subject: "+mail.getSubject()));
         }
         catch (MailException e){
