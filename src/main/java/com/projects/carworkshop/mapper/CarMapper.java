@@ -29,7 +29,7 @@ public class CarMapper {
                 car.getEngineSize(),car.getPlateNumber(),car.getBodyType(),car.getOwner().getId(),repairMapper.mapToRepairDtoList(car.getRepairs()));
     }
 
-    public List<CarDto> mapoCarDtoList(final List<Car> cars) {
+    public List<CarDto> mapToCarDtoList(final List<Car> cars) {
         return cars.stream()
                 .map(c-> new CarDto(c.getId(), c.getBrand(),c.getModel(),c.getManufactureYear(), c.getVinNumber(),
                         c.getEngineSize(),c.getPlateNumber(),c.getBodyType(),c.getOwner().getId(),repairMapper.mapToRepairDtoList(c.getRepairs())))

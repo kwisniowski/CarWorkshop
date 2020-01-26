@@ -33,4 +33,8 @@ public class ApplicationEventService {
     public ApplicationEvent saveEvent(ApplicationEvent applicationEvent) {
         return repository.save(applicationEvent);
     }
+
+    public void deleteAll () {
+        repository.deleteAll();
+    }
 }

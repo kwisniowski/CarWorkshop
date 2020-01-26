@@ -5,6 +5,8 @@ import com.projects.carworkshop.domain.Car;
 import com.projects.carworkshop.domain.Customer;
 import com.projects.carworkshop.dto.CarDto;
 import com.projects.carworkshop.fasade.CarFasade;
+import com.projects.carworkshop.service.ApplicationEventService;
+import com.projects.carworkshop.service.MailService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,12 @@ public class CarControllerTest {
 
     @Autowired
     MockMvc mockMvc;
+
+    @MockBean
+    ApplicationEventService applicationEventService;
+
+    @MockBean
+    MailService mailService;
 
     @Test
     public void shouldFetchAllCars() throws Exception {

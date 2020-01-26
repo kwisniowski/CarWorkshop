@@ -23,7 +23,6 @@ public class NbpApiClient {
         System.out.println(url);
         NbpApiResponseDto response = restTemplate.getForObject(url, NbpApiResponseDto.class);
         if (response!=null) {
-            System.out.println(response.getCode()+" + "+response.getRates()[0].getMid());
             return response;
         }
         else return new NbpApiResponseDto();

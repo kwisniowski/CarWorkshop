@@ -26,7 +26,8 @@ public class ServiceCarRentController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/rents")
     public List<ServiceCarRentDto> getAllRents() {
-        return fasade.getAll();
+        List<ServiceCarRentDto> list = fasade.getAll();
+        return list;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/rents",consumes = APPLICATION_JSON_VALUE)

@@ -19,4 +19,7 @@ public interface ApplicationEventRepository extends CrudRepository<ApplicationEv
     List<ApplicationEvent> findByType(ApplicationEvent.EventType type);
 
     ApplicationEvent save(ApplicationEvent event);
+
+    @Override
+    void deleteAll();
 }

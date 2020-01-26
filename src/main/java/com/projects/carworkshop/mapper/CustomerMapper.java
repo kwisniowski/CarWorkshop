@@ -24,7 +24,7 @@ public class CustomerMapper {
 
     public Customer mapToCustomer (final CustomerDto customerDto) {
         return new Customer(customerDto.getId(),customerDto.getFirstname(),customerDto.getLastname(), customerDto.getCompany(),
-                customerDto.getNipNumber(),customerDto.getAccountNumber(),customerDto.getRegonNumber(), customerDto.getEmailAdress(),
+                customerDto.getNipNumber(),customerDto.getAccountNumber(),customerDto.getRegonNumber(), customerDto.getEmailAddress(),
                 customerDto.getPhoneNumber(),customerDto.isVipCustomer(),customerDto.isCompanyCustomer(),
                 carMapper.mapoCarList(customerDto.getCarDtos()), invoiceMapper.mapToInvoiceList(customerDto.getInvoiceDtos()));
     }
@@ -32,16 +32,16 @@ public class CustomerMapper {
     public CustomerDto mapToCustomerDto(final Customer customer) {
         return new CustomerDto(
                 customer.getId(),customer.getFirstname(), customer.getLastname(), customer.getCompany(),
-                customer.getNipNumber(), customer.getAccountNumber(), customer.getRegonNumber(), customer.getEmailAdress(),
-                customer.getPhoneNumber(), customer.isVipCustomer(), customer.isCompanyCustomer(),carMapper.mapoCarDtoList(customer.getCars()),
+                customer.getNipNumber(), customer.getAccountNumber(), customer.getRegonNumber(), customer.getEmailAddress(),
+                customer.getPhoneNumber(), customer.isVipCustomer(), customer.isCompanyCustomer(),carMapper.mapToCarDtoList(customer.getCars()),
                 invoiceMapper.mapToInvoiceDtoList(customer.getInvoices()));
     }
 
     public List<CustomerDto> mapToCustomerDtoList (final List<Customer> customerList) {
         return customerList.stream()
                 .map(c -> new CustomerDto(c.getId(),c.getFirstname(), c.getLastname(), c.getCompany(),
-                        c.getNipNumber(), c.getAccountNumber(), c.getRegonNumber(), c.getEmailAdress(),
-                        c.getPhoneNumber(), c.isVipCustomer(), c.isCompanyCustomer(),carMapper.mapoCarDtoList(c.getCars()),
+                        c.getNipNumber(), c.getAccountNumber(), c.getRegonNumber(), c.getEmailAddress(),
+                        c.getPhoneNumber(), c.isVipCustomer(), c.isCompanyCustomer(),carMapper.mapToCarDtoList(c.getCars()),
                         invoiceMapper.mapToInvoiceDtoList(c.getInvoices())))
                 .collect(Collectors.toList());
     }
@@ -49,7 +49,7 @@ public class CustomerMapper {
     public List<Customer> mapToCustomerList (final List<CustomerDto> customerDtoList) {
         return customerDtoList.stream()
                 .map(c-> new Customer(c.getId(),c.getFirstname(), c.getLastname(), c.getCompany(),
-                        c.getNipNumber(), c.getAccountNumber(), c.getRegonNumber(), c.getEmailAdress(),
+                        c.getNipNumber(), c.getAccountNumber(), c.getRegonNumber(), c.getEmailAddress(),
                         c.getPhoneNumber(), c.isVipCustomer(), c.isCompanyCustomer(),carMapper.mapoCarList(c.getCarDtos()),
                         invoiceMapper.mapToInvoiceList(c.getInvoiceDtos())))
                 .collect(Collectors.toList());

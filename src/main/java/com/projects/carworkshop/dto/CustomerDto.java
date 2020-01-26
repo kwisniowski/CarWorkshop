@@ -17,7 +17,7 @@ public class CustomerDto {
         private String nipNumber;
         private String accountNumber;
         private String regonNumber;
-        private String emailAdress;
+        private String emailAddress;
         private String phoneNumber;
         private boolean vipCustomer;
         private boolean companyCustomer;

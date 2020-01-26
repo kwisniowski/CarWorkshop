@@ -4,9 +4,12 @@ import com.google.gson.Gson;
 import com.projects.carworkshop.domain.Customer;
 import com.projects.carworkshop.dto.CustomerDto;
 import com.projects.carworkshop.fasade.CustomerFasade;
+import com.projects.carworkshop.service.ApplicationEventService;
+import com.projects.carworkshop.service.MailService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -26,13 +29,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(CustomerController.class)
-public class CustomerControllerTestSuite {
+public class CustomerControllerTest {
 
     @Autowired
     MockMvc mockMvc;
 
     @MockBean
     CustomerFasade customerFasade;
+
+    @MockBean
+    ApplicationEventService applicationEventService;
+
+    @Mock
+    MailService mailService;
 
     @Test
     public void shouldFetchEmptyCustomersList() throws Exception {

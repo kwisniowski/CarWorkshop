@@ -17,7 +17,7 @@ public class CarFasade {
     CarMapper mapper;
 
     public List<CarDto> fetchAllCars() {
-        return mapper.mapoCarDtoList(service.getCars());
+        return mapper.mapToCarDtoList(service.getCars());
     }
 
     public Optional<CarDto> fetchCar(Long carId) {

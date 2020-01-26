@@ -38,6 +38,8 @@ dependencies {
 
     //Status check
     compile('org.springframework.boot:spring-boot-starter-actuator')
+
+    testCompile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.4")
     
 }
 

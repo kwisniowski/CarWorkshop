@@ -4,9 +4,7 @@ import com.projects.carworkshop.domain.ApplicationEvent;
 import com.projects.carworkshop.fasade.ApplicationEventFasade;
 import com.projects.carworkshop.service.ApplicationEventService;
 import org.h2.tools.Server;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,8 +29,13 @@ public class ApplicationEventTestSuite {
     @BeforeClass
     public static void initTest() throws SQLException {
         Server webServer = Server.createWebServer("-web",
-                "-webAllowOthers", "-webPort", "8084");
+                "-webAllowOthers", "-webPort", "8111");
         webServer.start();
+    }
+
+    @After
+    public void cleanLogs() {
+        fasade.clearEventsList();
     }
 
     @Test
@@ -48,6 +51,7 @@ public class ApplicationEventTestSuite {
 
         //Then
         Assert.assertNotNull(testEvent.getId());
+
     }
 
     @Test

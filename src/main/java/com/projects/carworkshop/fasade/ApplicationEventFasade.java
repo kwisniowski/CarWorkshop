@@ -38,4 +38,8 @@ public class ApplicationEventFasade {
     public ApplicationEventDto createApplicationEvent (ApplicationEventDto applicationEventDto) {
         return mapper.mapToApplicationEventDto(service.saveEvent(mapper.mapToApplicationEvent(applicationEventDto)));
     }
+
+    public void clearEventsList() {
+        service.deleteAll();
+    }
 }

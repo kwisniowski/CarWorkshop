@@ -1,6 +1,5 @@
 package com.projects.carworkshop.domain;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -46,7 +45,7 @@ public class Customer {
 
     @Column(name="EMAIL")
     @NotNull
-    private String emailAdress;
+    private String emailAddress;
 
     @Column(name="PHONE")
     @NotNull
@@ -87,7 +86,7 @@ public class Customer {
         this.nipNumber = nipNumber;
         this.accountNumber = accountNumber;
         this.regonNumber = regonNumber;
-        this.emailAdress = emailAdress;
+        this.emailAddress = emailAdress;
         this.phoneNumber = phoneNumber;
         this.vipCustomer = vipCustomer;
         this.companyCustomer = companyCustomer;

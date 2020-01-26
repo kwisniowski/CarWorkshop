@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/v1/carworkshop/api")
@@ -38,7 +41,7 @@ public class RentRequestController {
         return fasade.countRequests();
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/rentRequests")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/rentRequests/{rentRequestId}")
     public void deleteRentRequest(@PathVariable long rentRequestId) {
         fasade.deleteRequest(rentRequestId);
     }
@@ -48,7 +51,7 @@ public class RentRequestController {
         return fasade.updateRentRequest(rentRequest);
     }
 
-    @RequestMapping(method = RequestMethod.POST,value ="/rentRequests")
+    @RequestMapping(method = RequestMethod.POST,value ="/rentRequests", consumes = APPLICATION_JSON_VALUE)
     public void createRequest(@RequestBody RentRequestDto rentRequestDto) {
         fasade.createRentRequest(rentRequestDto);
         mailService.send(new Mail("wisniowski.kacper@gmail.com","New request","New request has been created"));
