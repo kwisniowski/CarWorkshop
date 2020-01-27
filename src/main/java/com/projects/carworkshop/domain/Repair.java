@@ -37,10 +37,6 @@ public class Repair {
     @Column(name="END_DATE")
     private LocalDate endDate;
 
-    @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn (name="INVOICE_ID")
-    private Invoice invoice;
-
     @Column(name="REPAIR_COST")
     private double totalCost;
 
@@ -50,13 +46,4 @@ public class Repair {
         this.endDate = startDate;
     }
 
-    private double calculateTotalCost() {
-        return invoice.getItems().stream()
-                .mapToDouble(item -> item.calculateItemCost())
-                .sum();
-    }
-
-    public double getTotalCost() {
-        return calculateTotalCost();
-    }
 }

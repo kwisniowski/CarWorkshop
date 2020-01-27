@@ -77,7 +77,7 @@ public class RepairMapperTestSuite {
         sparePartRepository.save(testSpare2);
         invoiceRepository.save(invoice1);
 
-        Repair testRepair = new Repair(1L, testCar1, LocalDate.now(), LocalDate.now().plus(3, ChronoUnit.DAYS), invoice1, 0);
+        Repair testRepair = new Repair(1L, testCar1, LocalDate.now(), LocalDate.now().plus(3, ChronoUnit.DAYS), 0);
 
         repairRepository.save(testRepair);
 
@@ -123,7 +123,7 @@ public class RepairMapperTestSuite {
         sparePartRepository.save(testSpare2);
         invoiceRepository.save(invoice1);
 
-        RepairDto testRepairDto = new RepairDto(1L, testCar1.getId(), LocalDate.now(), LocalDate.now().plus(3, ChronoUnit.DAYS), invoice1.getId(), 0);
+        RepairDto testRepairDto = new RepairDto(1L, testCar1.getId(), LocalDate.now(), LocalDate.now().plus(3, ChronoUnit.DAYS), 0);
 
         //When
         Repair expectedRepair = repairMapper.mapToRepair(testRepairDto);
@@ -131,6 +131,6 @@ public class RepairMapperTestSuite {
         //Then
         Assert.assertEquals(2680,expectedRepair.getTotalCost(),0);
         Assert.assertNotNull(expectedRepair.getCar());
-        Assert.assertNotNull(expectedRepair.getInvoice());
+
     }
 }

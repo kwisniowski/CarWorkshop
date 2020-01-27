@@ -18,7 +18,6 @@ public class RepairDto {
         private long carId;
         private LocalDate startDate;
         private LocalDate endDate;
-        private long invoiceId;
         private double totalCost;
 }
 

@@ -52,7 +52,7 @@ public class RepiarControllerTest {
     @Test
     public void shouldFetchAllRepiars() throws Exception {
         //Given
-        RepairDto testRepairDto = new RepairDto(1L,12L, LocalDate.now(), LocalDate.now(),1L,1.0);
+        RepairDto testRepairDto = new RepairDto(1L, 1L, LocalDate.now(), LocalDate.now(),1.0);
         List<RepairDto> testList = new ArrayList<>();
         testList.add(testRepairDto);
         when(fasade.fetchAllRepairs()).thenReturn(testList);
@@ -68,7 +68,7 @@ public class RepiarControllerTest {
     public void shouldCreateRepair() throws Exception {
         //Given
         //When
-        RepairDto testRepairDto = new RepairDto(1L,12L, LocalDate.now(), LocalDate.now(),1L,1.0);
+        RepairDto testRepairDto = new RepairDto(1L, 1L, LocalDate.now(), LocalDate.now(),1.0);
 
         String jsonContent = "{\"id\":1, \"carId\":12,\"startDate\": \"2020-01-01\", \"endDate\": \"2020-01-02\", \"invoiceId\":1, \"totalCost\":1}";
         System.out.println(jsonContent);

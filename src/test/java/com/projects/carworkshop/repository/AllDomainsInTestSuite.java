@@ -64,7 +64,6 @@ public class AllDomainsInTestSuite {
         invoice1.getItems().add(item2);
         item1.setInvoice(invoice1);
         item2.setInvoice(invoice1);
-        testRepair.setInvoice(invoice1);
 
         double expectedValue = testRepair.getTotalCost();
 
