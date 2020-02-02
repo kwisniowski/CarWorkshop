@@ -4,13 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,9 +22,9 @@ public class Car {
     public enum CarBodyType {HATCHBACK,STATION_WAGON,CABRIO,SEDAN,VAN};
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-    @Column(name="ID")
+    @Column(name="ID", unique = true)
     private long id;
 
     @Column(name="BRAND")
