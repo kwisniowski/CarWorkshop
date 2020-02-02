@@ -34,17 +34,17 @@ public class CarController {
     @Autowired
     ApplicationEventService applicationEventService;
 
-    @RequestMapping(method = RequestMethod.GET, value="/cars")
+    @GetMapping(value="/cars")
     public List<CarDto> getCars() {
         return fasade.fetchAllCars();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/cars/{carId}")
+    @GetMapping(value="/cars/{carId}")
     public CarDto getCar(@PathVariable Long carId) throws NotFoundException {
         return fasade.fetchCar(carId).orElseThrow(NotFoundException::new);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/cars/{carId}")
+    @DeleteMapping(value = "/cars/{carId}")
     public void deleteCar(@PathVariable Long carId){
         CarDto tempCar = fasade.fetchCar(carId).orElse(null);
         if (tempCar!=null) {
@@ -54,7 +54,7 @@ public class CarController {
         fasade.deleteCar(carId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/cars")
+    @PutMapping(value = "/cars")
     public CarDto updateCar(@RequestBody CarDto carDto) {
         CarDto tempCarDto = fasade.updateCar(carDto);
         if (tempCarDto!=null) {
@@ -64,7 +64,7 @@ public class CarController {
         return tempCarDto;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/cars", consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/cars", consumes = APPLICATION_JSON_VALUE)
     public void createCar(@RequestBody CarDto carDto) {
         fasade.createCar(carDto);
         applicationEventService.saveEvent(new ApplicationEvent(ApplicationEvent.EventType.CREATED,

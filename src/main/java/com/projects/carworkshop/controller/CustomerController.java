@@ -27,17 +27,17 @@ public class CustomerController {
     @Autowired
     ApplicationEventService applicationEventService;
 
-    @RequestMapping(method = RequestMethod.GET, value="/customers")
+    @GetMapping(value="/customers")
     public List<CustomerDto> getUsers() {
         return fasade.fetchCustomers();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/customers/{customerId}")
+    @GetMapping(value="/customers/{customerId}")
     public CustomerDto getCustomer(@PathVariable Long customerId) throws NotFoundException {
         return fasade.fetchCustomer(customerId).orElseThrow(NotFoundException::new);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/customers/{customerId}")
+    @DeleteMapping(value = "/customers/{customerId}")
     public void deleteCustomer(@PathVariable Long customerId){
         CustomerDto tempCustomer = fasade.fetchCustomer(customerId).orElse(null);
         if (tempCustomer!=null) {
@@ -48,7 +48,7 @@ public class CustomerController {
         fasade.deleteCustomer(customerId);
     };
 
-    @RequestMapping(method = RequestMethod.PUT, value ="/customers")
+    @PutMapping(value ="/customers")
     public CustomerDto updateCustomer(@RequestBody CustomerDto customerDto) {
         CustomerDto tempCustomer = fasade.updateCustomer(customerDto);
         if (tempCustomer!=null) {
@@ -58,7 +58,7 @@ public class CustomerController {
         return tempCustomer;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/customers", consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/customers", consumes = APPLICATION_JSON_VALUE)
     public void createCustomer(@RequestBody CustomerDto customerDto) {
         fasade.createCustomer(customerDto);
         applicationEventService.saveEvent(new ApplicationEvent(ApplicationEvent.EventType.CREATED,

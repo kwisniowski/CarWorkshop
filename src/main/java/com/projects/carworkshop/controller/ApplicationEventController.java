@@ -24,12 +24,12 @@ public class ApplicationEventController {
     @Autowired
     MailService mailService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/events")
+    @GetMapping(value = "/events")
     public List<ApplicationEventDto> getAllEvents() {
         return fasade.getAllEvents();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/events/byType/{type}")
+    @GetMapping(value = "/events/byType/{type}")
     public List<ApplicationEventDto> getEventsByType(@PathVariable String type) {
         if (validateTypeString(type)) {
             return fasade.findEventByType(ApplicationEvent.EventType.valueOf(type.toUpperCase()));
@@ -37,12 +37,12 @@ public class ApplicationEventController {
         else return new ArrayList<>();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/events/byDate/{date}")
+    @GetMapping(value = "/events/byDate/{date}")
     public List<ApplicationEventDto> getEventsByDate(@PathVariable String date) {
         return fasade.findEventByDate(LocalDate.parse(date));
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/events")
+    @PostMapping(value = "/events")
     public ApplicationEventDto createApplicationEvent (@RequestBody ApplicationEventDto applicationEventDto) {
         ApplicationEventDto returnedDto = fasade.createApplicationEvent(applicationEventDto);
         return returnedDto;

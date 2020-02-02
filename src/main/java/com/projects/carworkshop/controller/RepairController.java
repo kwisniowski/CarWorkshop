@@ -24,17 +24,17 @@ public class RepairController {
     @Autowired
     ApplicationEventService applicationEventService;
 
-    @RequestMapping(method = RequestMethod.GET, value="/repairs")
+    @GetMapping(value="/repairs")
     public List<RepairDto> getRepairs() {
         return fasade.fetchAllRepairs();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/repairs/{repairId}")
+    @GetMapping(value="/repairs/{repairId}")
     public RepairDto getRepair(@PathVariable Long repairId) throws NotFoundException {
         return fasade.fetchRepair(repairId).orElseThrow(NotFoundException::new);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/repairs/{repairId}")
+    @DeleteMapping(value = "/repairs/{repairId}")
     public void deleteRepair(@PathVariable Long repairId){
         RepairDto tempRepair = fasade.fetchRepair(repairId).orElse(null);
         if (tempRepair!=null) {
@@ -44,7 +44,7 @@ public class RepairController {
         fasade.deleteRepair(repairId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/repairs")
+    @PutMapping(value = "/repairs")
     public RepairDto updateRepair(@RequestBody RepairDto repairDto) {
         RepairDto tempRepairDto = fasade.updateRepair(repairDto);
         if (tempRepairDto!=null) {
@@ -54,7 +54,7 @@ public class RepairController {
         return tempRepairDto;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/repairs", consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/repairs", consumes = APPLICATION_JSON_VALUE)
     public void createRepair(@RequestBody RepairDto repairDto) {
         fasade.createRepair(repairDto);
         applicationEventService.saveEvent(new ApplicationEvent(ApplicationEvent.EventType.CREATED,

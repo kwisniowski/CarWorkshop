@@ -23,17 +23,17 @@ public class SparePartController {
     @Autowired
     ApplicationEventService applicationEventService;
 
-    @RequestMapping(method = RequestMethod.GET, value="/spares")
+    @GetMapping(value="/spares")
     public List<SparePartDto> getSpareParts() {
         return fasade.getAllSPareParts();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/spares/{sparePartId}")
+    @GetMapping(value="/spares/{sparePartId}")
     public SparePartDto getSparePart(@PathVariable Long sparePartId) throws NotFoundException {
         return fasade.getOne(sparePartId).orElseThrow(NotFoundException::new);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/spares/{sparePartId}")
+    @DeleteMapping(value = "/spares/{sparePartId}")
     public void deleteSparePart(@PathVariable Long sparePartId){
         SparePartDto sparePartDto = fasade.getOne(sparePartId).orElse(null);
         if (sparePartDto!=null) {
@@ -43,14 +43,14 @@ public class SparePartController {
         fasade.deleteById(sparePartId);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/spares", consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/spares", consumes = APPLICATION_JSON_VALUE)
     public void createSparePart(@RequestBody SparePartDto sparePartDto) {
         fasade.save(sparePartDto);
         applicationEventService.saveEvent(new ApplicationEvent(ApplicationEvent.EventType.CREATED,
                 "Spare ("+sparePartDto.getModel()+" "+sparePartDto.getManufacturer()+") was created"));
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/spares", consumes = APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/spares", consumes = APPLICATION_JSON_VALUE)
     public void updateSparePart(@RequestBody SparePartDto sparePartDto) {
         fasade.save(sparePartDto);
         applicationEventService.saveEvent(new ApplicationEvent(ApplicationEvent.EventType.UPDATED,
