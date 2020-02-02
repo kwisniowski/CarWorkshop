@@ -50,6 +50,13 @@ public class SparePartController {
                 "Spare ("+sparePartDto.getModel()+" "+sparePartDto.getManufacturer()+") was created"));
     }
 
+    @RequestMapping(method = RequestMethod.PUT, value = "/spares", consumes = APPLICATION_JSON_VALUE)
+    public void updateSparePart(@RequestBody SparePartDto sparePartDto) {
+        fasade.save(sparePartDto);
+        applicationEventService.saveEvent(new ApplicationEvent(ApplicationEvent.EventType.UPDATED,
+                "Spare ("+sparePartDto.getModel()+" "+sparePartDto.getManufacturer()+") was updated"));
+    }
+
 
 
 

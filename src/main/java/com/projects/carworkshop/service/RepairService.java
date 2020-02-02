@@ -32,4 +32,7 @@ public class RepairService {
         return repository.save(repair);
     }
 
+    public long count() {
+        return repository.count();
+    };
 }

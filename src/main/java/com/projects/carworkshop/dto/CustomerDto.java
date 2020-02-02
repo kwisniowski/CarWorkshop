@@ -22,6 +22,5 @@ public class CustomerDto {
         private boolean vipCustomer;
         private boolean companyCustomer;
         private List<CarDto> carDtos;
-        private List<InvoiceDto> invoiceDtos;
 
 }

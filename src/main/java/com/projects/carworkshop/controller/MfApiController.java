@@ -8,7 +8,7 @@ package com.projects.carworkshop.controller;
         import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1/carworkshop/mfapi/")
+@RequestMapping("/v1/carworkshop/api/")
 @CrossOrigin("*")
 public class MfApiController {
 

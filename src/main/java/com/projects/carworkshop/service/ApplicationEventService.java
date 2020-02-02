@@ -37,4 +37,8 @@ public class ApplicationEventService {
     public void deleteAll () {
         repository.deleteAll();
     }
+
+    public long count() {
+        return repository.count();
+    }
 }

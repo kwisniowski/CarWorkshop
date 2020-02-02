@@ -45,7 +45,7 @@ public class CarMapperTestSuite {
                 null, null,
                 "122212141212", null,
                 "kwisniowski@cxsa.pl", "607241199",
-                false, false, new ArrayList<>(), new ArrayList<>());
+                false, false, new ArrayList<>());
         Car testCar1 = new Car(
                 Car.CarBrand.CITROEN, "C3", "2018", "12121TETTTEWBBW",
                 1.9, "kr3043l", Car.CarBodyType.CABRIO, testCustomer);
@@ -71,7 +71,7 @@ public class CarMapperTestSuite {
                 null, null,
                 "122212141212", null,
                 "kwisniowski@cxsa.pl", "607241199",
-                false, false, new ArrayList<>(), new ArrayList<>());
+                false, false, new ArrayList<>());
         customerService.save(testCustomer);
         CarDto testCarDto = new CarDto(1L, Car.CarBrand.CITROEN, "C3", "2018", "12121TETTTEWBBW",
                 1.9, "kr3043l", Car.CarBodyType.CABRIO, 1,new ArrayList<>());

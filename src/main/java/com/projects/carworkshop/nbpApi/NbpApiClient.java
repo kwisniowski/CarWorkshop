@@ -20,7 +20,6 @@ public class NbpApiClient {
     public NbpApiResponseDto getCurrentCurrencyFactor(String currencyCode) {
         URI url = UriComponentsBuilder.fromHttpUrl(nbpApiConfig.getNbpApiEndpoint()+currencyCode+"/")
                 .build().encode().toUri();
-        System.out.println(url);
         NbpApiResponseDto response = restTemplate.getForObject(url, NbpApiResponseDto.class);
         if (response!=null) {
             return response;

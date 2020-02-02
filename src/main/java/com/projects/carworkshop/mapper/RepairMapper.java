@@ -3,7 +3,6 @@ package com.projects.carworkshop.mapper;
 import com.projects.carworkshop.domain.Repair;
 import com.projects.carworkshop.dto.RepairDto;
 import com.projects.carworkshop.repository.CarRepository;
-import com.projects.carworkshop.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +14,7 @@ public class RepairMapper {
 
     @Autowired
     CarRepository carRepository;
-    @Autowired
-    InvoiceRepository invoiceRepository;
+
 
     public RepairDto mapToRepairDto(final Repair repair) {
         return new RepairDto(repair.getId(), repair.getCar().getId(), repair.getStartDate(), repair.getEndDate(),repair.getTotalCost());

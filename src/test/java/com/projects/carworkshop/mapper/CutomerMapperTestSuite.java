@@ -38,7 +38,7 @@ public class CutomerMapperTestSuite {
                 null, null,
                 "122212141212", null,
                 "kwisniowski@cxsa.pl", "607241199",
-                false, false, new ArrayList<>(), new ArrayList<>());
+                false, false, new ArrayList<>());
 
         //When
         CustomerDto expectedDto = mapper.mapToCustomerDto(testCustomer);
@@ -56,7 +56,7 @@ public class CutomerMapperTestSuite {
                 null, null,
                 "122212141212", null,
                 "kwisniowski@cxsa.pl", "607241199",
-                false, false, new ArrayList<>(), new ArrayList<>());
+                false, false, new ArrayList<>());
 
         //When
         Customer expectedCustomer = mapper.mapToCustomer(testCustomerDto);

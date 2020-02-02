@@ -29,4 +29,8 @@ public class CarService {
         return repository.save(car);
     }
 
+    public long count() {
+        return repository.count();
+    }
+
 }

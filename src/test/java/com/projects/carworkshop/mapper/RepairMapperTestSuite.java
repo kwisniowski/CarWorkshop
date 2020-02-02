@@ -24,9 +24,6 @@ public class RepairMapperTestSuite {
     CustomerRepository customerRepository;
 
     @Autowired
-    InvoiceRepository invoiceRepository;
-
-    @Autowired
     CarRepository carRepository;
 
     @Autowired
@@ -61,21 +58,11 @@ public class RepairMapperTestSuite {
         SparePart testSpare1 = new SparePart(Car.CarBrand.PEUGEOT, "206", "Bosh", 230);
         SparePart testSpare2 = new SparePart(Car.CarBrand.CITROEN, "C3", "Bosh", 199);
 
-        InvoiceItem item1 = new InvoiceItem(testSpare1, 3);
-        InvoiceItem item2 = new InvoiceItem(testSpare2, 10);
-
-        Invoice invoice1 = new Invoice(testCustomer, 24);
-
-        invoice1.getItems().add(item1);
-        invoice1.getItems().add(item2);
-        item1.setInvoice(invoice1);
-        item2.setInvoice(invoice1);
 
         customerRepository.save(testCustomer);
         carRepository.save(testCar1);
         sparePartRepository.save(testSpare1);
         sparePartRepository.save(testSpare2);
-        invoiceRepository.save(invoice1);
 
         Repair testRepair = new Repair(1L, testCar1, LocalDate.now(), LocalDate.now().plus(3, ChronoUnit.DAYS), 2680);
 
@@ -107,21 +94,10 @@ public class RepairMapperTestSuite {
         SparePart testSpare1 = new SparePart(Car.CarBrand.PEUGEOT, "206", "Bosh", 230);
         SparePart testSpare2 = new SparePart(Car.CarBrand.CITROEN, "C3", "Bosh", 199);
 
-        InvoiceItem item1 = new InvoiceItem(testSpare1, 3);
-        InvoiceItem item2 = new InvoiceItem(testSpare2, 10);
-
-        Invoice invoice1 = new Invoice(testCustomer, 24);
-
-        invoice1.getItems().add(item1);
-        invoice1.getItems().add(item2);
-        item1.setInvoice(invoice1);
-        item2.setInvoice(invoice1);
-
         customerRepository.save(testCustomer);
         carRepository.save(testCar1);
         sparePartRepository.save(testSpare1);
         sparePartRepository.save(testSpare2);
-        invoiceRepository.save(invoice1);
 
         RepairDto testRepairDto = new RepairDto(1L, testCar1.getId(), LocalDate.now(), LocalDate.now().plus(3, ChronoUnit.DAYS), 2680);
 

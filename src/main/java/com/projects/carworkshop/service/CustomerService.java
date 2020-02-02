@@ -28,4 +28,8 @@ public class CustomerService {
     public Customer save(Customer customer) {
         return repository.save(customer);
     }
+
+    public long count() {
+        return repository.count();
+    }
 }

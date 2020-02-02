@@ -25,4 +25,5 @@ public interface RepairRepository extends CrudRepository<Repair, Long> {
 
     @Override
     void deleteById(Long repairId);
+
 }

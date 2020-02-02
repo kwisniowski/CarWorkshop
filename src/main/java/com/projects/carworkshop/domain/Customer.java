@@ -67,14 +67,6 @@ public class Customer {
     )
     private List<Car> cars;
 
-    @OneToMany(
-            targetEntity = Invoice.class,
-            mappedBy = "customer",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<Invoice> invoices;
-
     public Customer(
             String firstname, String lastname, String company, String nipNumber, String accountNumber,
             String regonNumber, @NotNull String emailAdress, @NotNull String phoneNumber, boolean vipCustomer,
