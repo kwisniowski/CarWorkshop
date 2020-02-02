@@ -1,11 +1,10 @@
 package com.projects.carworkshop.controller;
 
-        import com.projects.carworkshop.mfApi.MfApiClient;
-        import com.projects.carworkshop.mfApi.MfApiResponseDto;
-        import com.projects.carworkshop.mfApi.SubjectDto;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.data.jpa.repository.Query;
-        import org.springframework.web.bind.annotation.*;
+import com.projects.carworkshop.mfApi.MfApiClient;
+import com.projects.carworkshop.mfApi.MfApiResponseDto;
+import com.projects.carworkshop.mfApi.SubjectDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/carworkshop/api/")

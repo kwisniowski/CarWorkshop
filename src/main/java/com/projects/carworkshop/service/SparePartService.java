@@ -22,7 +22,6 @@ public class SparePartService {
         return repository.findById(sparePartId);
     };
 
-
     public SparePart save(SparePart sparePart) {
         return repository.save(sparePart);
     };

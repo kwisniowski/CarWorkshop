@@ -1,10 +1,7 @@
 package com.projects.carworkshop.fasade;
 
-import com.projects.carworkshop.domain.SparePart;
 import com.projects.carworkshop.dto.SparePartDto;
-import com.projects.carworkshop.exception.NotFoundException;
 import com.projects.carworkshop.mapper.SparePartMapper;
-import com.projects.carworkshop.repository.SparePartRepository;
 import com.projects.carworkshop.service.SparePartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

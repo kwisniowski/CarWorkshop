@@ -1,10 +1,7 @@
 package com.projects.carworkshop.fasade;
 
-import com.projects.carworkshop.dto.CarDto;
 import com.projects.carworkshop.dto.RepairDto;
-import com.projects.carworkshop.mapper.CarMapper;
 import com.projects.carworkshop.mapper.RepairMapper;
-import com.projects.carworkshop.service.CarService;
 import com.projects.carworkshop.service.RepairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

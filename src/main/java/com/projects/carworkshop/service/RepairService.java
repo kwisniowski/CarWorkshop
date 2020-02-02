@@ -1,8 +1,6 @@
 package com.projects.carworkshop.service;
 
-import com.projects.carworkshop.domain.Car;
 import com.projects.carworkshop.domain.Repair;
-import com.projects.carworkshop.repository.CarRepository;
 import com.projects.carworkshop.repository.RepairRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
