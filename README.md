@@ -13,3 +13,5 @@ Scheduler - wysyłanie maili do administratora co godzinę ze stanem bazy danych
 Eventy - zapis logó o zmianach w bazie danych, możliwy również do podejrzenia w aplikacji frontendowej. 
 
 Api startuje lokalnie na porcie 8080 z adresem bazowym: /v1/carworkshop/api
+
+Aplikacja wysyła maile z utworzonego specjalnie kota google, tam również maile są wysyłane. Dane maila w properties.
